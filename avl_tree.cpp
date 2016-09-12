@@ -1,43 +1,3 @@
-/*
-1) left left case:
-T1, T2, T3 and T4 are subtrees.
-         z                                      y
-        / \                                   /   \
-       y   T4      Right Rotate (z)          x      z
-      / \          - - - - - - - - ->      /  \    /  \
-     x   T3                               T1  T2  T3  T4
-    / \
-  T1   T2
-
-b) Left Right Case
-     z                              z                              x
-    / \                            / \                           / 	 \
-   y   T4  Left Rotate (y)        x   T4     Right Rotate(z)    y     z
-  / \      - - - - - - - - ->    /  \        - - - - - - - ->  / \   / \
-T1   x                          y    T3                       T1 T2 T3 T4
-    / \                        / \
-  T2   T3                    T1   T2
-
-c) Right Right Case:
-    z                               y
-   / \                            /   \
- T1   y     Left Rotate(z)       z     x
-     / \   - - - - - - - ->     / \   / \
-   T2   x                     T1  T2 T3  T4
-       / \
-     T3  T4
-d) Right Left Case:
-   z                            z                             x
-  / \                          / \                          /   \
-T1   y   Right Rotate (y)    T1   x      Left Rotate(z)    z     y
-    / \  - - - - - - - - ->      / \   - - - - - - - ->   / \   / \
-   x   T4                      T2   y                   T1  T2 T3  T4
-  / \                              / \
-T2   T3                           T3  T4
-
-
-*/
-
 #include <iostream>
 #include <vector>
 #include <cstdio>
@@ -62,11 +22,12 @@ class Bst {
  public:
   // constractor
   Bst() : root(NULL), size(0) {}
-  // to handel when N is NULL
+  
   int height(node* N) {
     if (N == NULL) return 0;
     return N->height;
   }
+  
   void update_height(node *N){
     if(N == NULL)return;
     N->height = max(height(N->left), height(N->right))+1;
@@ -76,7 +37,7 @@ class Bst {
     if (N == NULL) return 0;
     return height(N->left) - height(N->right);
   }
-  //
+ 
   node* newNode(int key) {
     node* new_node = new node;
     new_node->key = key;
